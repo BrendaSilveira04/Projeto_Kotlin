@@ -1,16 +1,12 @@
 package com.example.projeto_kotlin
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -18,15 +14,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.TextFieldDefaults
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -35,8 +26,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.SolidColor
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
@@ -55,9 +44,47 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BotaoLogin(){
+fun textFieldLogin(
+    result: TextFieldValue,
+    label:String
+){
+    var result by remember{ mutableStateOf(TextFieldValue("")) }
+    TextField(
+        modifier = Modifier
+            .padding(0.5.dp)
+            .width(400.dp)
+            .height(52.dp)
+            .background(
+                color = Color.Transparent
+            )
+            .border(
+                width = 1.dp,
+                color = Color(0xFF000000),
+                shape = RoundedCornerShape(size = 28.dp)
+            ),
 
+        value = result,
+        label = {
+            Text(
+                text= label
+            )
+        },
+        textStyle = TextStyle(
+            color = Color.Black
+
+        ),
+        onValueChange = {
+            result = it
+        },
+        shape = RoundedCornerShape(28.dp),
+        colors = TextFieldDefaults.outlinedTextFieldColors(
+            focusedBorderColor = Color.Transparent,
+            unfocusedBorderColor = Color.Transparent,
+            containerColor = Color.White
+        ),
+    )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -73,37 +100,34 @@ fun TelaLogin() {
         Column (
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
+                .padding(150.dp)
+                .background(color = Color.Magenta)
         ){
             Text(
                 text = "Login",
                 fontSize = 30.sp,
+
             )
         }
         Column(
             modifier = Modifier
-                .align(Alignment.CenterHorizontally),
+                .fillMaxSize()
+                .background(color = Color.Transparent),
+            verticalArrangement = Arrangement.spacedBy(
+                space = 25.dp,
+                alignment = Alignment.CenterVertically
+            ),
+            horizontalAlignment = Alignment.CenterHorizontally,
 
         ){
+
             var User by remember{ mutableStateOf(TextFieldValue("")) }
+            textFieldLogin(result = User, label = "Usuário ou Email")
 
-            OutlinedTextField(value = User,
-                label = {Text(text= "Email")},
-                textStyle = TextStyle(color = Color.Black),
-                onValueChange = {User = it },
-                colors = TextFieldDefaults.outlinedTextFieldColors(
-                    focusedBorderColor = Color.Gray
-                    , unfocusedBorderColor = Color.Gray),
-            )
 
-            
             var SenhaUser by remember{ mutableStateOf(TextFieldValue("")) }
 
-            OutlinedTextField(value = SenhaUser,
-                label = {Text(text= "Senha")},
-                onValueChange = {SenhaUser = it },
-                colors = TextFieldDefaults.outlinedTextFieldColors(
-                    focusedBorderColor = Color.Gray, unfocusedBorderColor = Color.Gray)
-            )
+            textFieldLogin(result = SenhaUser, label = "Senha")
 
         }
     }
