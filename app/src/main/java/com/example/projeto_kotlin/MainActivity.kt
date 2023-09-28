@@ -1,6 +1,7 @@
 package com.example.projeto_kotlin
 
 import android.os.Bundle
+import android.widget.Button
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
@@ -13,7 +14,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -28,6 +32,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -85,8 +90,8 @@ fun textFieldLogin(
             containerColor = Color.White
         ),
     )
-}
 
+}
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TelaLogin() {
@@ -129,9 +134,52 @@ fun TelaLogin() {
 
             textFieldLogin(result = SenhaUser, label = "Senha")
 
+            OutlinedButton(
+                onClick = {},
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(
+                        0xFFE9EEF4
+                    )
+                ),
+
+
+                modifier = Modifier
+                    .width(190.dp)
+                    .height(58.dp)
+                    .border(
+                        width = (1.dp),
+                        color = Color(
+                            0xFF000000
+                        ),
+                        shape = RoundedCornerShape(28.dp)
+                    )
+                    .background(
+                        color = Color(
+                            0xFFE9EEF4
+                        ),
+                        shape = RoundedCornerShape(28.dp)
+                    )
+
+
+
+
+
+            ) {
+                Text(
+                    text = "LOGIN",
+                    style = TextStyle(
+                        fontSize = 14.sp,
+                        textAlign = TextAlign.Center,
+                    )
+                )
+            }
         }
     }
-}
+
+
+
+    }
+
 
 @Preview
 @Composable
