@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -23,6 +24,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
@@ -81,14 +83,16 @@ fun telaCadastro(navController: NavController,) {
         modifier = Modifier
             .fillMaxSize()
             .background(
-                color = Color(0xFF27b1bf)
+                Brush.linearGradient(listOf(
+                    Color.White,
+                    Color.Cyan
+                )
+                )
             )
     ) {
         Row(
             modifier = Modifier
-
-                .padding(70.dp)
-                .background(color = Color.Magenta)
+                .padding(80.dp)
         ) {
             Text(
                 text = "Cadastro",
@@ -122,7 +126,7 @@ fun telaCadastro(navController: NavController,) {
 
             textFieldLogin(result = SenhaConfirmacao, label = "Confirmação de Senha")
 
-            OutlinedButton(
+            ElevatedButton(
                 onClick = { navController.navigate(route = "NomeUser") },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color(
@@ -139,13 +143,14 @@ fun telaCadastro(navController: NavController,) {
                         color = Color(
                             0xFF000000
                         ),
-                        shape = RoundedCornerShape(28.dp)
+                        shape = RoundedCornerShape(28.dp),
                     )
                     .background(
                         color = Color(
                             0xFFE9EEF4
                         ),
                         shape = RoundedCornerShape(28.dp)
+
                     )
 
 

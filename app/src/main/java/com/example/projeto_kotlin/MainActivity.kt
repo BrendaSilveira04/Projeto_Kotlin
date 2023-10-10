@@ -5,11 +5,13 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -18,6 +20,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
@@ -32,7 +35,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
@@ -132,20 +139,27 @@ fun TelaLogin(navController: NavController) {
         modifier = Modifier
             .fillMaxSize()
             .background(
-                color = Color(0xFF27b1bf)
+                Brush.linearGradient(listOf(
+                    Color.White,
+                    Color.Cyan
+                    )
+                )
             )
     ) {
-        Row (
+        Column (
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
-                .padding(150.dp)
-                .background(color = Color.Magenta)
-        ){
-            Text(
-                text = "Login",
-                fontSize = 30.sp,
+                .padding(60.dp)
 
-                )
+        ){
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_medium)))
+            Image(
+                painter = painterResource(R.drawable.rw_1),
+                contentDescription = null,
+                modifier = Modifier
+                    .width(200.dp)
+                    .height(200.dp)
+            )
         }
         Column(
             modifier = Modifier
@@ -167,7 +181,7 @@ fun TelaLogin(navController: NavController) {
 
             textFieldLogin(result = SenhaUser, label = "Senha")
 
-            OutlinedButton(
+            ElevatedButton(
                 onClick = {navController.navigate(route = "Home")},
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color(
@@ -207,11 +221,11 @@ fun TelaLogin(navController: NavController) {
                 )
             }
             TextButton(
-                onClick = {navController.navigate(route = "Cadastro")}
+                onClick = {}
 
             ) {
                 Text(
-                    text = "CADASTRO",
+                    text = "ESQUECI A SENHA",
                     style = TextStyle(
                         color = Color.Black,
                         background = Color.Transparent,
@@ -220,6 +234,22 @@ fun TelaLogin(navController: NavController) {
                     )
                 )
             }
+
+            TextButton(
+                onClick = {navController.navigate(route = "Cadastro")}
+
+            ) {
+                Text(
+                    text = "CADASTRE-SE",
+                    style = TextStyle(
+                        color = Color.Black,
+                        background = Color.Transparent,
+                        fontSize = 12.sp,
+                        textAlign = TextAlign.Center,
+                    )
+                )
+            }
+
         }
     }
 }

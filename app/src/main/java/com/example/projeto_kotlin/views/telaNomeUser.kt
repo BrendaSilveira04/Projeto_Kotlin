@@ -20,6 +20,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
@@ -35,14 +36,16 @@ fun telaNomeUser(navController: NavController) {
         modifier = Modifier
             .fillMaxSize()
             .background(
-                color = Color(0xFF27b1bf)
+                Brush.linearGradient(listOf(
+                    Color.White,
+                    Color.Cyan
+                )
+                )
             )
     ) {
         Row(
             modifier = Modifier
-
                 .padding(70.dp)
-                .background(color = Color.Magenta)
         ) {
             Text(
                 text = "Cadastro",
